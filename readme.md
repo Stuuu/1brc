@@ -1,6 +1,6 @@
 ### 1 Billion row challenge attempts.
 
-All attempts using compiled
+All attempts using compiled billion.go
 
 ## Attempt 1
 Compiled run time
