@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 	"strings"
@@ -16,11 +15,8 @@ func main() {
 
 	station_name_counts := make(map[string]int)
 
-	readFile, err := os.Open("measurements.txt")
+	readFile, _ := os.Open("measurements.txt")
 
-	if err != nil {
-		fmt.Println(err)
-	}
 	fileScanner := bufio.NewScanner(readFile)
 	fileScanner.Split(bufio.ScanLines)
 
@@ -30,10 +26,7 @@ func main() {
 
 		station_name, temp_as_string := lineparts[0], lineparts[1]
 
-		temp_val, err := strconv.ParseFloat(temp_as_string, 32)
-		if err != nil {
-			fmt.Printf(err.Error())
-		}
+		temp_val, _ := strconv.ParseFloat(temp_as_string, 32)
 		temp_reading := float64(temp_val)
 
 		if min[station_name] > temp_reading {
@@ -48,7 +41,6 @@ func main() {
 		cur_avg := (avg[station_name]*float64(station_name_counts[station_name]) + temp_reading) / float64(station_name_counts[station_name]+1)
 
 		avg[station_name] = cur_avg
-
 	}
 
 	readFile.Close()
