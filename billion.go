@@ -11,7 +11,7 @@ func main() {
 
 	min := make(map[string]float64)
 	max := make(map[string]float64)
-	avg := make(map[string]float64)
+	totals := make(map[string]float64)
 
 	station_name_counts := make(map[string]int)
 
@@ -38,15 +38,15 @@ func main() {
 		}
 
 		station_name_counts[station_name]++
-		cur_avg := (avg[station_name]*float64(station_name_counts[station_name]) + temp_reading) / float64(station_name_counts[station_name]+1)
-
-		avg[station_name] = cur_avg
+		totals[station_name] += temp_reading
 	}
 
 	readFile.Close()
 
 	print("{")
-	for station_name, avg_temp := range avg {
+	for station_name, total_temp := range totals {
+
+		avg_temp := total_temp / float64(station_name_counts[station_name])
 		weather_station := station_name + "=" + strconv.FormatFloat(min[station_name], 'f', 1, 64) + "/" + strconv.FormatFloat(avg_temp, 'f', 1, 64) + "/" + strconv.FormatFloat(max[station_name], 'f', 1, 64) + ","
 		print(weather_station)
 	}
