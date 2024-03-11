@@ -2,6 +2,10 @@
 
 All attempts using compiled billion.go
 
+All runs on 
+![image](https://github.com/Stuuu/1brc/assets/13997948/0322de02-6db3-4398-81e5-3a99486f2cc3)
+
+
 ## Attempt 1
 Compiled run time
 ```
